@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phpunit bootstrap="./tests/bootstrap.php"
-		colors="true"
 		convertErrorsToExceptions="true"
 		convertNoticesToExceptions="true"
 		convertWarningsToExceptions="true"
@@ -8,13 +7,11 @@
 		<testsuites>
 			<testsuite name="Markdown Test Suite">
 				<file>./tests/ParserTest.php</file>
-
 				<file>./tests/MarkdownTest.php</file>
-				<file>./tests/MarkdownOLStartNumTest.php</file>
-				
-				<file>./tests/GithubMarkdownTest.php</file>
-				
+				<file>./tests/MarkdownOLStartNumTest.php</file>				
+				<file>./tests/GithubMarkdownTest.php</file>				
 				<file>./tests/MarkdownExtraTest.php</file>
+				<file>./tests/MathsMarkdownTest.php</file>
 			</testsuite>
 		</testsuites>
 		<filter>
