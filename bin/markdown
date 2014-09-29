@@ -21,6 +21,7 @@ $flavors = [
 ];
 
 $full = false;
+$mathjax = false;
 $src = [];
 foreach($argv as $k => $arg) {
     if ($k == 0) {
@@ -40,6 +41,8 @@ foreach($argv as $k => $arg) {
                 } else {
                     error("Incomplete argument --flavor!", "usage");
                 }
+                if( $arg[1] == 'maths' )
+                    $mathjax = true;
             break;
             case '--full':
                 $full = true;
@@ -74,6 +77,16 @@ if (empty($src)) {
 /** @var cebe\markdown\Parser $md */
 $md = new $flavor();
 $markup = $md->parse($markdown);
+$mathcdn = '';
+
+if( $mathjax ) {
+    $mathcdn = 
+        '
+        <script 
+            type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>';
+}
 
 if ($full) {
     echo <<<HTML
@@ -81,49 +94,17 @@ if ($full) {
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<script 
-		type="text/javascript" 
-		src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-	</script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">$mathcdn
     <style>
-        body { 
-			font-family: Arial, sans-serif; 
-			font-size: 14px;
-			line-height: 24px;
-			margin: 0px;
-			padding: 0px;
-		}
-		div#markdown { 
-			width: 800px; 
-			margin: 3em auto; 
-			padding: 1.5em 3em;
-			box-shadow: 0 3px 5px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.08);
-		}
-		div#markdown h1 {
-			border-bottom: 1px solid #e6e6e6;
-			padding: 0 0 0.5em;
-		}
-        code { 
-			background: #eeeeff; 
-			padding: 2px; 
-		}
-        li { 
-			margin-bottom: 5px; 
-		}
-        img { 
-			max-width: 1200px; 
-		}
-        table, td, th { 
-			border: solid 1px #ccc; 
-			border-collapse: collapse; 
-		}
+        body { font-family: Arial, sans-serif; }
+        code { background: #eeeeff; padding: 2px; }
+        li { margin-bottom: 5px; }
+        img { max-width: 1200px; }
+        table, td, th { border: solid 1px #ccc; border-collapse: collapse; }
     </style>
 </head>
 <body>
-	<div id="markdown">
-		$markup
-	</div>
+$markup
 </body>
 </html>
 HTML;
@@ -141,7 +122,7 @@ function usage() {
     $cmd = $argv[0];
     echo <<<EOF
 Usage:
-	
+    
     $cmd [--flavor=<flavor>] [--full] [file.md]
 
     --flavor  specifies the markdown flavor to use. If omitted the original 
