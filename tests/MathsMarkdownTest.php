@@ -7,7 +7,7 @@ use cebe\markdown\MathsMarkdown;
 /**
  * Test class for maths flavoured markdown
  */
-class MathMarkdownTest extends BaseMarkdownTest{
+class MathsMarkdownTest extends BaseMarkdownTest{
 	
 	public function createMarkdown() {
 		return new MathsMarkdown();
@@ -16,7 +16,7 @@ class MathMarkdownTest extends BaseMarkdownTest{
 	public function getDataPaths() {
 		return [ 
 			'markdown-data' => __DIR__.'/markdown-data',
-			'math-data' => __DIR__.'/math-data' 
+			'maths-data' => __DIR__.'/maths-data' 
 		];
 	}
 	
