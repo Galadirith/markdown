@@ -87,16 +87,41 @@ if ($full) {
 		src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 	</script>
     <style>
-        body { font-family: Arial, sans-serif; font-size: 14px }
-		div#container { width: 600px; margin: 20px auto }
-        code { background: #eeeeff; padding: 2px; }
-        li { margin-bottom: 5px; }
-        img { max-width: 1200px; }
-        table, td, th { border: solid 1px #ccc; border-collapse: collapse; }
+        body { 
+			font-family: Arial, sans-serif; 
+			font-size: 14px;
+			line-height: 24px;
+			margin: 0px;
+			padding: 0px;
+		}
+		div#markdown { 
+			width: 800px; 
+			margin: 3em auto; 
+			padding: 1.5em 3em;
+			box-shadow: 0 3px 5px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.08);
+		}
+		div#markdown h1 {
+			border-bottom: 1px solid #e6e6e6;
+			padding: 0 0 0.5em;
+		}
+        code { 
+			background: #eeeeff; 
+			padding: 2px; 
+		}
+        li { 
+			margin-bottom: 5px; 
+		}
+        img { 
+			max-width: 1200px; 
+		}
+        table, td, th { 
+			border: solid 1px #ccc; 
+			border-collapse: collapse; 
+		}
     </style>
 </head>
 <body>
-	<div id="container">
+	<div id="markdown">
 		$markup
 	</div>
 </body>
